@@ -1,0 +1,59 @@
+name: Recipe submission to pull request
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  convert:
+    if: contains(github.event.issue.labels.*.name, 'recipe-submission')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install pillow
+
+      - name: Convert the issue into a recipe file
+        id: convert
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
+        run: python scripts/issue_to_recipe.py
+
+      - name: Check that the site still builds
+        run: python scripts/build.py
+
+      - name: Open a pull request
+        id: pr
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: recipe/issue-${{ github.event.issue.number }}
+          add-paths: |
+            recipes/
+            images/
+          commit-message: "Add recipe: ${{ steps.convert.outputs.title }}"
+          title: "Add recipe: ${{ steps.convert.outputs.title }}"
+          body: |
+            Submitted by @${{ github.event.issue.user.login }} in #${{ github.event.issue.number }}.
+
+            Review `recipes/${{ steps.convert.outputs.slug }}.md`, then merge to publish.
+
+            Closes #${{ github.event.issue.number }}
+
+      - name: Tell the submitter what happens next
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_URL: ${{ steps.pr.outputs.pull-request-url }}
+        run: |
+          gh issue comment "${{ github.event.issue.number }}" \
+            --body "Thanks! Your recipe is queued for review: $PR_URL. It goes live once it's merged."

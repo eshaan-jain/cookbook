@@ -1,0 +1,75 @@
+name: Submit a recipe
+description: Add a recipe to the book. No coding needed.
+title: "Recipe: "
+labels: ["recipe-submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for sharing! Fill in what you can and press **Submit new issue**.
+        A draft of your recipe is created automatically and the book owner will review it before it goes live.
+  - type: input
+    id: title
+    attributes:
+      label: Recipe name
+      placeholder: e.g. Grandma's lemon bars
+    validations:
+      required: true
+  - type: input
+    id: description
+    attributes:
+      label: Short description
+      description: One sentence that makes people want to cook it.
+  - type: input
+    id: author
+    attributes:
+      label: Your name
+      description: Shown as "From ..." on the recipe page.
+  - type: input
+    id: servings
+    attributes:
+      label: Servings
+      description: A number, e.g. 4
+  - type: input
+    id: prep_time
+    attributes:
+      label: Prep time
+      placeholder: 15 min
+  - type: input
+    id: cook_time
+    attributes:
+      label: Cook time
+      placeholder: 30 min
+  - type: input
+    id: tags
+    attributes:
+      label: Tags
+      description: Comma-separated, e.g. dinner, vegetarian, quick
+  - type: input
+    id: source
+    attributes:
+      label: Original source link (if you adapted it from a website)
+  - type: textarea
+    id: ingredients
+    attributes:
+      label: Ingredients
+      description: One per line. Put the amount first, e.g. "2 cups flour".
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps
+      description: One step per line. Numbers are optional.
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Tips, substitutions, storage, anything else.
+  - type: textarea
+    id: photo
+    attributes:
+      label: Photo
+      description: Drag and drop a photo into this box (or paste one). One photo is enough.
