@@ -1,0 +1,46 @@
+{
+  "title": "Our Family Cookbook",
+  "tagline": "Who's hungry?",
+  "repo": "eshaan-jain/cookbook",
+  "footer": "Made with love (and a lot of garlic).",
+  "tag_groups": {
+    "Meal": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "snack",
+      "dessert"
+    ],
+    "Allergens & diet": [
+      "gluten-free",
+      "dairy-free",
+      "nut-free",
+      "egg-free",
+      "vegetarian",
+      "vegan"
+    ],
+    "Dish": [
+      "bowl",
+      "soup",
+      "salad",
+      "pasta",
+      "sandwich",
+      "baking"
+    ],
+    "Protein": [
+      "seafood",
+      "chicken",
+      "turkey",
+      "beef",
+      "pork",
+      "tofu"
+    ],
+    "Good to know": [
+      "quick",
+      "meal prep",
+      "freezer-friendly",
+      "winter"
+    ]
+  },
+  "google_form_url": "https://docs.google.com/forms/d/e/1FAIpQLScmxyiY3Ot6g2O5Y8qnRbMWSFs1UnXxMHOuFJi2-b_IuqTMkQ/viewform"
+}

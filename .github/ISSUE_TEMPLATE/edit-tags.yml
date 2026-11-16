@@ -1,0 +1,24 @@
+name: Change a recipe's tags
+description: Propose new tags for a recipe. Usually opened from the pencil icon on a recipe page.
+title: "Tag change: "
+labels: ["tag-edit"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This form is normally filled in for you by the pencil icon on a recipe page.
+        Review it and press **Submit new issue**. The change goes live once the book owner approves it.
+  - type: input
+    id: recipe
+    attributes:
+      label: Recipe (file name)
+      description: The recipe's file name without ".md", e.g. healthy-turkey-chili
+    validations:
+      required: true
+  - type: input
+    id: tags
+    attributes:
+      label: New tags
+      description: Comma-separated. This replaces the recipe's current tags.
+    validations:
+      required: true

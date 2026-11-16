@@ -1,0 +1,53 @@
+name: Tag change to pull request
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  apply:
+    if: contains(github.event.issue.labels.*.name, 'tag-edit')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Apply the tag change
+        id: apply
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: python scripts/apply_tag_edit.py
+
+      - name: Check that the site still builds
+        run: python scripts/build.py
+
+      - name: Open a pull request
+        id: pr
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: tags/issue-${{ github.event.issue.number }}
+          add-paths: recipes/
+          commit-message: "Update tags: ${{ steps.apply.outputs.title }}"
+          title: "Update tags: ${{ steps.apply.outputs.title }}"
+          body: |
+            Tag change requested by @${{ github.event.issue.user.login }} in #${{ github.event.issue.number }}.
+
+            Check the `tags:` line in `recipes/${{ steps.apply.outputs.slug }}.md`, then merge to publish.
+
+            Closes #${{ github.event.issue.number }}
+
+      - name: Tell the requester what happens next
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_URL: ${{ steps.pr.outputs.pull-request-url }}
+        run: |
+          gh issue comment "${{ github.event.issue.number }}" \
+            --body "Thanks! Your tag change is queued for review: $PR_URL. It goes live once it's merged."
