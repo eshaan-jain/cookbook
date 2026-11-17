@@ -17,6 +17,10 @@ RECIPES = ROOT / "recipes"
 IMAGES = ROOT / "images"
 SITE = ROOT / "site"
 DIST = ROOT / "dist"
+# Changes whenever a site file changes, so browsers never keep serving stale CSS/JS.
+ASSET_VERSION = hashlib.md5(b"".join(
+    f.read_bytes() for f in sorted(SITE.glob("*")) if f.suffix in (".css", ".js")
+)).hexdigest()[:8]
 
 # Soft gradient pairs for recipes that don't have a photo yet.
 GRADIENTS = [
@@ -190,7 +194,7 @@ def head(config, title, prefix, description=""):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{prefix}style.css">
+<link rel="stylesheet" href="{prefix}style.css?v={ASSET_VERSION}">
 </head>"""
 
 
@@ -260,7 +264,7 @@ def render_index(config, recipes):
   <p class="empty" id="empty" hidden>No matches. Try a different word or clear the filter.</p>
 </main>
 <footer class="site-footer">{esc(config.get("footer", ""))}</footer>
-<script src="index.js"></script>
+<script src="index.js?v={ASSET_VERSION}"></script>
 </body>
 </html>"""
 
@@ -337,7 +341,7 @@ def render_recipe(config, r, all_tags):
   {notes}
   <p class="credit">{" · ".join(credit)}</p>
 </main>
-<script src="{prefix}recipe.js"></script>
+<script src="{prefix}recipe.js?v={ASSET_VERSION}"></script>
 </body>
 </html>"""
 
