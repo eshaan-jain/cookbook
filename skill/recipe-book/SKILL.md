@@ -68,8 +68,8 @@ Rules:
 
 ## Reviewing a friend's submission
 
-Friends submit through the "Submit a recipe" issue form. A GitHub Action opens a pull request with a draft file. When asked to review one, check that the quantities and steps make sense, tidy the tags, and fix wording. Don't merge unless the user says so. Regroup the ingredients by kitchen location if the submission lists them in one flat list.
+Friends submit through the Google Form linked from the site. Once a week a scheduled task reads the response sheet and opens a pull request per recipe with a draft file. When asked to review one, check that the quantities and steps make sense, tidy the tags, and fix wording. Don't merge unless the user says so. Regroup the ingredients by kitchen location if the draft lists them in one flat list.
 
 ## Changing the look
 
-Edit `site/style.css` (colors are variables at the top), `site.json` (title, tagline, footer, `repo` as `owner/name`) or the templates in `scripts/build.py`.
+Edit `site/style.css` (colors are variables at the top), `site.json` (title, tagline, footer, `repo` as `owner/name`, `google_form_url`) or the templates in `scripts/build.py`.
