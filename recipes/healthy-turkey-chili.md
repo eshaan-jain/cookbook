@@ -7,6 +7,7 @@ cook_time: 45 min
 tags: [dinner, soup, winter, meal prep, freezer-friendly]
 source: https://www.ambitiouskitchen.com/seriously-the-best-healthy-turkey-chili/
 source_name: Ambitious Kitchen
+submitted_by: Eshaan Jain
 image: images/healthy-turkey-chili.jpg
 ---
 

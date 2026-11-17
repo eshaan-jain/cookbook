@@ -20,9 +20,9 @@ servings: 12
 prep_time: 15 min
 cook_time: 35 min
 tags: [dessert, baking]
-author: Name            # optional, shown as "From Name"
-source: https://...     # optional, link to the original
-source_name: Site name  # optional
+submitted_by: Name      # who submitted it; shown as "Submitted by: Name"
+source: https://...     # link to the original recipe site, whenever there is one
+source_name: Site name  # name shown for the source link
 image: images/lemon-bars.jpg   # always include
 ---
 
@@ -56,6 +56,7 @@ Rules:
 - `servings` is a plain number, because the site scales quantities from it. Put the amount first on every ingredient line ("2 cups flour"). Write amounts as numbers or fractions (1 ½, 3/4).
 - Group ingredients by where they live in the kitchen, with `### ` headings in this order, skipping any that would be empty: `### Fridge`, `### Freezer`, `### Pantry`, `### Counter`. Fridge: eggs, dairy and plant milks, fresh meat and fish, fresh herbs, bell peppers, cucumbers, ginger, opened sauces like mayo. Freezer: anything the source says is frozen. Pantry: dry goods, oils, vinegars, canned goods, spices, sweeteners, soy sauce, broth, rice, oats. Counter: bananas, onions, garlic, potatoes, tomatoes, avocados, citrus. Keep each line's amount and wording as written, and mark optional extras with "(optional)" instead of making a separate toppings group. Put an item where most people keep it and don't agonize over edge cases.
 - Tags are lowercase, 2 to 5 per recipe, and reuse existing tags where they fit (check other files in `recipes/`).
+- Always set `submitted_by` to the name of the person who gave you the recipe (for a form submission, the name they entered; if they left it blank, leave the line out). Always set `source` and `source_name` when the recipe came from a link, so the site shows a "Source:" link to the original.
 - Ingredient lists are fine to copy as facts. For recipes from websites, rewrite the steps and notes in your own words, set `source`, and never copy their photos. Ask the user for their own photo instead.
 - For the user's own or a friend's recipe, keep their wording and voice. Fix only obvious typos.
 - Don't invent quantities or times that the source doesn't give. Leave a field out instead, and tell the user what was missing.
