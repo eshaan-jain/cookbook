@@ -4,13 +4,12 @@ description: A big, easy pot of lean turkey chili with beans and corn. Freezes w
 servings: 6
 prep_time: 10 min
 cook_time: 45 min
-tags: [dinner, soup, winter, meal prep, freezer-friendly]
+tags: [dinner, soup, winter, meal prep, freezer-friendly, gluten-free]
 source: https://www.ambitiouskitchen.com/seriously-the-best-healthy-turkey-chili/
 source_name: Ambitious Kitchen
 submitted_by: Eshaan Jain
 image: images/healthy-turkey-chili.jpg
 ---
-
 ## Ingredients
 
 ### Fridge
