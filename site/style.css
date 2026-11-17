@@ -147,7 +147,9 @@ body.cooking.recipe-page .wrap { margin-top: 12px; }
 .steps li.done { opacity: .45; text-decoration: line-through; }
 .notes { margin-top: 16px; padding: 18px 22px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
 .notes ul { padding-left: 20px; }
-.credit { color: var(--muted); font-size: .9rem; margin-top: 28px; }
+.credit { color: var(--muted); font-size: .95rem; margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--line); }
+.credit-line { display: block; margin: 4px 0; }
+.credit-line strong { color: var(--ink); font-weight: 600; }
 
 /* hover/focus tooltip for cook mode */
 .tip { position: relative; display: inline-block; }

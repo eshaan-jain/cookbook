@@ -7,6 +7,7 @@ cook_time: 10 min
 tags: [breakfast, vegetarian, dairy-free, gluten-free]
 source: https://www.ambitiouskitchen.com/banana-oatmeal-pancakes/
 source_name: Ambitious Kitchen
+submitted_by: Eshaan Jain
 image: images/banana-oatmeal-pancakes.jpg
 ---
 

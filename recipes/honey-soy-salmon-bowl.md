@@ -5,6 +5,7 @@ servings: 2
 prep_time: 10 min
 cook_time: 8 min
 tags: [dinner, bowl, seafood, quick]
+submitted_by: Eshaan Jain
 image: images/honey-soy-salmon-bowl.jpg
 ---
 

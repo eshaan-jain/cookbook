@@ -144,7 +144,7 @@ def load_recipe(path):
         "tags": [t.lower() for t in tags],
         "source": meta.get("source", ""),
         "source_name": meta.get("source_name", ""),
-        "author": meta.get("author", ""),
+        "submitted_by": meta.get("submitted_by", "") or meta.get("author", ""),
         "image": meta.get("image", ""),
         "ingredients": ingredients,
         "steps": steps,
@@ -280,11 +280,11 @@ def render_recipe(config, r, all_tags):
     steps = "".join(f"<li>{inline(s)}</li>" for s in r["steps"])
     tags = "".join(f'<a class="tag" href="{prefix}?tag={esc(t)}">{esc(t)}</a>' for t in r["tags"])
     credit = []
-    if r["author"]:
-        credit.append(f'From {esc(r["author"])}')
-    if r["source"]:
+    if r["submitted_by"]:
+        credit.append(f'<span class="credit-line"><strong>Submitted by:</strong> {esc(r["submitted_by"])}</span>')
+    if r["source"].startswith(("http://", "https://")):
         label = esc(r["source_name"] or r["source"])
-        credit.append(f'Adapted from <a href="{esc(r["source"])}" rel="noopener">{label}</a>')
+        credit.append(f'<span class="credit-line"><strong>Source:</strong> <a href="{esc(r["source"])}" rel="noopener" target="_blank">{label}</a></span>')
     servings_ctl = ""
     if r["servings"]:
         servings_ctl = f"""<div class="servings" data-base="{r['servings']}">
@@ -339,7 +339,7 @@ def render_recipe(config, r, all_tags):
     </section>
   </div>
   {notes}
-  <p class="credit">{" · ".join(credit)}</p>
+  <p class="credit">{"".join(credit)}</p>
 </main>
 <script src="{prefix}recipe.js?v={ASSET_VERSION}"></script>
 </body>
